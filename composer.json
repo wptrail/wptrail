@@ -38,6 +38,7 @@
         }
     },
     "scripts": {
+        "lint": "vendor/bin/phpcs"
     },
     "config": {
         "sort-packages": true
