@@ -1,0 +1,44 @@
+{
+    "name": "wptrail/wptrail",
+    "type": "wordpress-plugin",
+    "description": "Error handling for WordPress",
+    "keywords": [
+        "wordpress",
+        "error",
+        "exception",
+        "throwable",
+        "debugging"
+    ],
+    "homepage": "https://github.com/wptrail/wptrail",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Evgenii Nasyrov",
+            "email": "inasyrov@ya.ru",
+            "homepage": "https://github.com/nasyrov",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.4"
+    },
+    "require-dev": {
+    },
+    "autoload": {
+        "psr-4": {
+            "WPTrail\\": "src"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "WPTrail\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+    },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
