@@ -40,7 +40,8 @@
         }
     },
     "scripts": {
-        "lint": "vendor/bin/phpcs"
+        "lint": "vendor/bin/phpcs",
+        "analyse": "vendor/bin/psalm"
     },
     "config": {
         "sort-packages": true
