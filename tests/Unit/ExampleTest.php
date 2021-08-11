@@ -1,6 +1,8 @@
 <?php
 
-namespace WPTrail\Tests;
+namespace WPTrail\Tests\Unit;
+
+use WPTrail\Tests\TestCase;
 
 class ExampleTest extends TestCase
 {
