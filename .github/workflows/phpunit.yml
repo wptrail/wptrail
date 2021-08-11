@@ -1,0 +1,33 @@
+name: phpunit
+
+on:
+  push:
+    paths:
+      - '**.php'
+      - 'phpunit.xml.dist'
+
+jobs:
+  phpunit:
+    name: phpunit
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0
+          coverage: none
+
+      - name: Cache composer dependencies
+        uses: actions/cache@v2
+        with:
+          path: vendor
+          key: composer-${{ hashFiles('composer.lock') }}
+
+      - name: Run composer install
+        run: composer install -n --prefer-dist
+
+      - name: Run phpunit
+        run: composer test
