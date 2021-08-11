@@ -33,7 +33,7 @@ class PluginTest extends TestCase
     }
 
     /** @test */
-    public function it_catches_errors(): void
+    public function it_catches_an_error(): void
     {
         Plugin::bootstrap();
 
