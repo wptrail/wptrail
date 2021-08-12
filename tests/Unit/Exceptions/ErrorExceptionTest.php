@@ -19,6 +19,16 @@ class ErrorExceptionTest extends TestCase
     }
 
     /** @test */
+    public function it_make_a_new_instance_from_last_error(): void
+    {
+        @strpos();
+
+        $exception = ErrorException::fromLastError();
+
+        $this->assertNotNull($exception);
+    }
+
+    /** @test */
     public function it_checks_whether_an_error_is_globally_suppressed(): void
     {
         $exception = new ErrorException(
