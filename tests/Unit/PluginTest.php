@@ -72,4 +72,18 @@ class PluginTest extends TestCase
 
         $this->assertTrue(true);
     }
+
+    /** @test */
+    public function it_catches_a_fatal_error(): void
+    {
+        Plugin::bootstrap();
+
+        try {
+            @strpos();
+
+            $this->fail('An ErrorException should have been raised');
+        } catch (ErrorException $exception) {
+            $this->assertTrue(true);
+        }
+    }
 }

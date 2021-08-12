@@ -55,6 +55,10 @@ class Plugin
 
     public function handleShutdown(): void
     {
-        //
+        $exception = ErrorException::fromLastError();
+
+        if ($exception && $exception->isFatal()) {
+            $this->handleException($exception);
+        }
     }
 }
