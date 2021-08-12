@@ -64,4 +64,18 @@ class ErrorExceptionTest extends TestCase
 
         $this->assertTrue($exception->isLocallySuppressed());
     }
+
+    /** @test */
+    public function it_checks_whether_an_error_is_fatal(): void
+    {
+        $exception = new ErrorException(
+            'test message',
+            0,
+            E_ERROR,
+            __FILE__,
+            100
+        );
+
+        $this->assertTrue($exception->isFatal());
+    }
 }
