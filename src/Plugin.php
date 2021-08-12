@@ -42,6 +42,10 @@ class Plugin
     ): bool {
         $exception = new ErrorException($message, 0, $level, $file, $line);
 
+        if ($exception->isGloballySuppressed()) {
+            return false;
+        }
+
         if ($exception->isLocallySuppressed()) {
             return true;
         }

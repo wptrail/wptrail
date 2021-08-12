@@ -6,6 +6,11 @@ use ErrorException as BaseErrorException;
 
 class ErrorException extends BaseErrorException
 {
+    public function isGloballySuppressed(): bool
+    {
+        return !(error_reporting() & $this->severity);
+    }
+
     public function isLocallySuppressed(): bool
     {
         $paths = (array) apply_filters(
