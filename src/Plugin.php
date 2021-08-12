@@ -19,7 +19,7 @@ class Plugin
 
         static::$reservedMemory = str_repeat('x', 10240);
 
-        $self = new static;
+        $self = new static();
 
         error_reporting(-1);
 

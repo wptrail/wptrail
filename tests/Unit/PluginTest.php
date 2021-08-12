@@ -21,7 +21,7 @@ class PluginTest extends TestCase
     /** @test */
     public function it_wraps_an_error_in_exception(): void
     {
-        $plugin = new Plugin;
+        $plugin = new Plugin();
 
         try {
             $plugin->handleError(E_USER_NOTICE, 'test message', 'test.php', 100);
