@@ -49,6 +49,16 @@ class PluginTest extends TestCase
     }
 
     /** @test */
+    public function it_respects_error_suppression(): void
+    {
+        Plugin::bootstrap();
+
+        @trigger_error('test');
+
+        $this->assertTrue(true);
+    }
+
+    /** @test */
     public function it_suppresses_an_error_in_a_given_path(): void
     {
         Plugin::bootstrap();
