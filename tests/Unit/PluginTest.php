@@ -73,7 +73,10 @@ class PluginTest extends TestCase
         $this->assertTrue(true);
     }
 
-    /** @test */
+    /**
+     * @test
+     * @requires PHP < 8
+     */
     public function it_catches_a_fatal_error(): void
     {
         Plugin::bootstrap();
