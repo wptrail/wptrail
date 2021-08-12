@@ -2,7 +2,7 @@
 
 namespace WPTrail\Tests\Unit;
 
-use ErrorException;
+use WPTrail\Exceptions\ErrorException;
 use WPTrail\Plugin;
 use WPTrail\Tests\TestCase;
 
@@ -79,7 +79,7 @@ class PluginTest extends TestCase
         Plugin::bootstrap();
 
         try {
-            @strpos();
+            strpos();
 
             $this->fail('An ErrorException should have been raised');
         } catch (ErrorException $exception) {

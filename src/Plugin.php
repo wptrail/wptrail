@@ -55,10 +55,15 @@ class Plugin
 
     public function handleShutdown(): void
     {
-        $exception = ErrorException::fromLastError();
+        $error = error_get_last();
 
-        if ($exception && $exception->isFatal()) {
-            $this->handleException($exception);
+        if ($error && $this->isFatal($error['type'])) {
+            $this->handleError($error['type'], $error['message'], $error['file'], $error['line']);
         }
+    }
+
+    protected function isFatal(int $level): bool
+    {
+        return in_array($level, [E_COMPILE_ERROR, E_CORE_ERROR, E_ERROR, E_PARSE], true);
     }
 }
