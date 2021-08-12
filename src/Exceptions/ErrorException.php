@@ -13,13 +13,7 @@ class ErrorException extends BaseErrorException
 
     public function isLocallySuppressed(): bool
     {
-        $paths = (array) apply_filters(
-            'wptrail/suppressed-error-paths',
-            $defaultPaths = [],
-            $level = E_STRICT | E_DEPRECATED
-        );
-
-        foreach ($paths as $patten => $level) {
+        foreach ($this->locallySuppressedPaths() as $patten => $level) {
             $pathMatches  = (bool) preg_match($patten, $this->file);
             $levelMatches = $level & $this->severity;
 
@@ -29,5 +23,15 @@ class ErrorException extends BaseErrorException
         }
 
         return false;
+    }
+
+    protected function locallySuppressedPaths(): array
+    {
+        /** @psalm-suppress TooManyArguments */
+        return (array) apply_filters(
+            'wptrail/suppressed-error-paths',
+            $defaultPaths = [],
+            $defaultLevel = E_STRICT | E_DEPRECATED
+        );
     }
 }
