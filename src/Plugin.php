@@ -30,7 +30,13 @@ class Plugin
 
     public function handleException(Throwable $throwable): void
     {
-        //
+        // Clean the output buffer
+        ob_get_level() && ob_clean();
+
+        // Output some nice debugging
+
+        // Shutdown now to avoid "death loop"
+        exit(1);
     }
 
     public function handleError(
