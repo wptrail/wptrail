@@ -6,6 +6,8 @@ use ErrorException;
 use WPTrail\Plugin;
 use WPTrail\Tests\TestCase;
 
+use function Brain\Monkey\Filters\expectApplied;
+
 class PluginTest extends TestCase
 {
     /** @test */
@@ -40,11 +42,24 @@ class PluginTest extends TestCase
         try {
             trigger_error('test');
 
-            $this->fail('Should not continue here, the error should have been caught');
+            $this->fail('An ErrorException should have been raised');
         } catch (ErrorException $exception) {
             $this->assertTrue(true);
-
-            return;
         }
+    }
+
+    /** @test */
+    public function it_suppresses_an_error_in_a_given_path(): void
+    {
+        Plugin::bootstrap();
+
+        expectApplied('wptrail/suppressed-error-paths')
+            ->andReturn([
+                '@^' . preg_quote(__FILE__, '@') . '$@' => E_USER_NOTICE,
+            ]);
+
+        trigger_error('test');
+
+        $this->assertTrue(true);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace WPTrail;
 
-use ErrorException;
 use Throwable;
+use WPTrail\Exceptions\ErrorException;
 
 class Plugin
 {
@@ -41,9 +41,12 @@ class Plugin
         array $context = []
     ): bool {
         $exception = new ErrorException($message, 0, $level, $file, $line);
-        throw $exception;
 
-        return false;
+        if ($exception->isLocallySuppressed()) {
+            return true;
+        }
+
+        throw $exception;
     }
 
     public function handleShutdown(): void
